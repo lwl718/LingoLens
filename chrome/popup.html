@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LingoLens</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand"><span class="brand-mark">文</span><span>LingoLens</span></div>
+      <span class="connection-state" id="connectionState" title="API 状态"><span></span>未配置</span>
+    </header>
+
+    <nav class="tabs" aria-label="功能切换">
+      <button class="tab is-active" data-tab="translate" aria-selected="true">翻译</button>
+      <button class="tab" data-tab="settings" aria-selected="false">设置</button>
+    </nav>
+
+    <main>
+      <section class="view is-active" id="translateView">
+        <div class="language-row">
+          <select id="sourceLanguage" aria-label="源语言"></select>
+          <span class="direction" aria-hidden="true">→</span>
+          <select id="targetLanguage" aria-label="目标语言"></select>
+        </div>
+
+        <label class="sr-only" for="sourceText">待翻译文本</label>
+        <textarea id="sourceText" rows="5" maxlength="10000" placeholder="输入或粘贴文本"></textarea>
+        <div class="text-meta"><span id="characterCount">0</span><span>/</span><span id="characterLimit">2000</span></div>
+
+        <button class="primary-button" id="translateButton">
+          <span class="button-label">翻译</span>
+          <span class="button-spinner" hidden></span>
+        </button>
+
+        <section class="result-panel" id="resultPanel" hidden aria-live="polite">
+          <div class="result-toolbar">
+            <span id="resultStatus">译文</span>
+            <button class="icon-button" id="copyButton" title="复制译文" aria-label="复制译文">⧉</button>
+          </div>
+          <p id="resultText"></p>
+        </section>
+        <p class="inline-message" id="translateMessage" role="status"></p>
+      </section>
+
+      <section class="view settings-view" id="settingsView">
+        <form id="settingsForm">
+          <div class="field-row two-columns">
+            <label>服务商
+              <select id="provider">
+                <option value="openai">OpenAI</option>
+                <option value="deepseek">DeepSeek</option>
+                <option value="openrouter">OpenRouter</option>
+                <option value="ollama">Ollama</option>
+                <option value="custom">自定义</option>
+              </select>
+            </label>
+            <label>模型
+              <input id="model" type="text" autocomplete="off" spellcheck="false">
+            </label>
+          </div>
+
+          <label>API 地址
+            <input id="endpoint" type="url" inputmode="url" autocomplete="off" spellcheck="false">
+          </label>
+
+          <label>API 密钥
+            <span class="password-field">
+              <input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="sk-...">
+              <button type="button" id="toggleApiKey" title="显示或隐藏密钥">显示</button>
+            </span>
+          </label>
+
+          <div class="switch-row">
+            <div><strong>划词自动翻译</strong><span>选中文字后立即请求翻译</span></div>
+            <label class="switch"><input id="autoTranslate" type="checkbox"><span></span></label>
+          </div>
+
+          <div class="switch-row">
+            <div><strong>显示原文</strong><span>在网页浮窗中保留原文</span></div>
+            <label class="switch"><input id="showOriginal" type="checkbox"><span></span></label>
+          </div>
+
+          <label>划词长度上限
+            <input id="maxSelectionLength" type="number" min="100" max="10000" step="100">
+          </label>
+
+          <p class="security-note">API 密钥保存在 Chrome 扩展本地存储中，不会写入网页。</p>
+          <p class="inline-message" id="settingsMessage" role="status"></p>
+
+          <div class="form-actions">
+            <button type="button" class="secondary-button" id="testButton">测试连接</button>
+            <button type="submit" class="primary-button compact">保存</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

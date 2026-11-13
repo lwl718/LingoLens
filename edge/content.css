@@ -1,0 +1,242 @@
+:host {
+  all: initial;
+  color: #17201d;
+  font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+.ll-shell {
+  position: fixed;
+  z-index: 2147483647;
+  width: 360px;
+  pointer-events: none;
+}
+
+.ll-shell[hidden],
+.ll-panel[hidden],
+.ll-trigger[hidden] {
+  display: none !important;
+}
+
+.ll-panel {
+  width: 360px;
+  max-height: min(420px, calc(100vh - 24px));
+  overflow: hidden;
+  color: #17201d;
+  background: #ffffff;
+  border: 1px solid #d8dfdc;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(19, 31, 27, 0.18), 0 2px 8px rgba(19, 31, 27, 0.1);
+  pointer-events: auto;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.ll-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 0 8px 0 12px;
+  border-bottom: 1px solid #edf0ef;
+  background: #fbfcfc;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.ll-panel.is-dragging .ll-header {
+  cursor: grabbing;
+}
+
+.ll-brand,
+.ll-header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.ll-brand {
+  gap: 7px;
+  min-width: 0;
+  color: #27332f;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.ll-mark {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 6px;
+  color: #ffffff;
+  background: #0b7f64;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ll-header-actions {
+  gap: 3px;
+  cursor: default;
+}
+
+.ll-target {
+  height: 28px;
+  max-width: 72px;
+  margin-right: 2px;
+  padding: 0 22px 0 7px;
+  color: #35433e;
+  background: #f1f5f3;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  outline: none;
+  font: inherit;
+  font-size: 11px;
+}
+
+.ll-target:focus {
+  border-color: #4a9e87;
+}
+
+.ll-icon-button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  place-items: center;
+  color: #5d6965;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.ll-icon-button:hover,
+.ll-icon-button:focus-visible,
+.ll-icon-button[aria-pressed="true"] {
+  color: #0b715a;
+  background: #e7f3ee;
+  outline: none;
+}
+
+.ll-body {
+  max-height: 322px;
+  overflow: auto;
+  padding: 12px 14px 10px;
+  scrollbar-color: #c9d2ce transparent;
+  scrollbar-width: thin;
+}
+
+.ll-original,
+.ll-result {
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.ll-original {
+  display: -webkit-box;
+  overflow: hidden;
+  color: #6a7470;
+  font-size: 12px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.ll-divider {
+  height: 1px;
+  margin: 10px 0;
+  background: #edf0ef;
+}
+
+.ll-status {
+  min-height: 0;
+  margin-bottom: 3px;
+  color: #82908a;
+  font-size: 11px;
+}
+
+.ll-status:empty {
+  display: none;
+}
+
+.ll-status.is-error {
+  color: #b2472f;
+}
+
+.ll-result {
+  color: #17201d;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.ll-panel.is-loading .ll-result {
+  min-height: 48px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(90deg, #eef2f0 0, #eef2f0 70px, #f7f9f8 70px, #f7f9f8 140px);
+  background-size: 280px 100%;
+  animation: ll-loading 1.1s linear infinite;
+}
+
+.ll-retry {
+  min-height: 30px;
+  margin-top: 9px;
+  padding: 0 12px;
+  color: #0b715a;
+  background: #e7f3ee;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.ll-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 30px;
+  padding: 0 14px;
+  color: #8a9591;
+  background: #fbfcfc;
+  border-top: 1px solid #edf0ef;
+  font-size: 10px;
+}
+
+.ll-hint {
+  font-variant-numeric: tabular-nums;
+}
+
+.ll-trigger {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  color: #ffffff;
+  background: #0b7f64;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  box-shadow: 0 7px 18px rgba(19, 31, 27, 0.22);
+  cursor: pointer;
+  pointer-events: auto;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ll-trigger:hover,
+.ll-trigger:focus-visible {
+  background: #096b55;
+  outline: 3px solid rgba(11, 127, 100, 0.2);
+}
+
+@keyframes ll-loading {
+  from { background-position: 0 0; }
+  to { background-position: 280px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ll-panel.is-loading .ll-result { animation: none; }
+}
